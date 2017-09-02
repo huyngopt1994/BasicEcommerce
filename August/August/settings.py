@@ -127,8 +127,12 @@ STATIC_URL = '/static/'
 
 if DEBUG:
     MEDIA_URL = '/media/'
+    # /static/static-only
     STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static-only")
+    # /static/media
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
+    # staticfiles dir to look up the css , javascript
+    #/static/static/
     STATICFILES_DIRS = (
     os.path.join(os.path.dirname(BASE_DIR), 'static', 'static'),
     )
