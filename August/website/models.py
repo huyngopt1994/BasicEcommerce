@@ -4,11 +4,32 @@ from django.db import models
 
 # Create your models here.
 
-class profile(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField(null=True)
-    localtion = models.TextField(null=True)
-    contact = models.CharField(max_length=100, default="None")
+class type(models.Model):
 
-    def __str__(self):
-        return unicode(self.name).encode('utf-8')
+  id = models.AutoField(primary_key=True)
+  type = models.CharField(max_length=200, null=False,unique=True)
+
+class product(models.Model):
+  id = models.AutoField(primary_key=True)
+  product = models.CharField(max_length=200, null=False, unique=True)
+  price = models.IntegerField(null=False, unique=True)
+  ordered_number = models.IntegerField(null=False, unique=True,default=0)
+
+    # add a relationship 
+  type_id = models.ForeignKey('type')
+
+
+class order(models.Model):
+	id = models.AutoField(primary_key=True)
+	user_id = models.ForeignKey('user')
+	product_id = models.ForeignKey('product')
+	ordered_number = models.IntegerField(default=0)
+	ordered_time = models.DateTimeField(auto_now_add=True)
+
+class user(models.Model):
+  id = models.AutoField(primary_key=True)
+  name = models.CharField(max_length=200, null=False,unique=True)
+  phone = models.IntegerField(null=False, unique=True)
+
+    # add a relationship 
+  order_id = models.ForeignKey('order')

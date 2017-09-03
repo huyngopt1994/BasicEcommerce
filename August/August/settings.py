@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'August.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'huyngo1',
-        'USER': 'huy',
-        'PASSWORD': 'reddragon1994',
+        'NAME': 'tasterb',
+        'USER': 'root',
+        'PASSWORD': 'reddragon',
         'HOST': '127.0.0.1',
         'PORT': '3306',
 
