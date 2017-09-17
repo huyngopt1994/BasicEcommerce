@@ -56,18 +56,18 @@ class ColorList (ListView):
 
 		return context
 
-	def toggle_color_like(request, color_id):
-		"""Toggle "like" for a single color, then refresh the color-list page."""
-    	color = None
-    	try :
-    		#get color by color_id 
-    		color = Color.objects.query(id=color_id)
-    	except Color.DoesNotExist as e 
-    		raise ValueError("Unknown color.id =" +  str(color.id)+ "Original error:" + str(e))
+def toggle_color_like(request, color_id):
+	"""Toggle "like" for a single color, then refresh the color-list page."""
+	color = None
+	try :
+	#get color by color_id 
+		color = Color.objects.get(id=color_id)
+	except Color.DoesNotExist as e :
+		raise ValueError("Unknown color.id =" +  str(color.id)+ "Original error:" + str(e))
 
-    	color.is_favorited = not color.is_favorited
+	color.is_favorited = not color.is_favorited
 
-    	color.save() # Commit the change of database
-    	return redirect("color_list")
+	color.save() # Commit the change of database
+	return redirect("color_list")
 
 
