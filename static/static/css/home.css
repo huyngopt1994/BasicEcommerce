@@ -1,7 +1,74 @@
-.text-center {
-  margin-top: 25px;
-  }
-img {
-  display: block;
-  margin: 0 auto;
+
+.mynavbar {
+	z-index :999;
+	position : absolute ;
+	background: none;
+	width :100%;
 }
+
+.text-center {
+	margin-top : 40px;
+	margin-bottom : 40px ;
+}
+
+
+img{
+	display: block;
+	margin: 0 auto;
+}
+img.firstlogo{
+	position: absolute;
+    margin: auto;
+    top: 6.5vw;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.blog {
+	height : 800px;
+}
+
+#number {
+    text-align : center;
+ }
+
+.wrapper {
+    text-align: center;
+}
+ 
+.wrapper ul {
+        margin: 40px;
+        padding: ;
+        /* For IE, the outcast */
+        zoom:1;
+        list-style: none;
+}
+
+.wrapper li {
+       display :inline;
+      font-size : 18px;
+      padding: 20px;
+}
+
+   .mynavbar a {
+      color : blue;
+      font-size : 1vw;
+      float : left ;
+    }
+   
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+  div.overview {
+      margin-top : 60px;
+      margin-bottom: 60px;  
+      background-image : url('../media/overview.jpg');
+      height : 400px;
+      background-size: contain;
+
+    }
+  
