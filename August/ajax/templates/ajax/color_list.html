@@ -3,54 +3,14 @@
    "2". Requries 'django.contrib.humanize' in INSTALLED_APPS
 {% endcomment %}
 {% load humanize %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <title>Color Likenatorizer</title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width"/>
-      <style type="text/css">
-         .search_section  {
-            float: left;
-         }
-         .content_section  {
-            float: left;
-         }
-         table  {
-            border:1px solid #000;
-            border-spacing: 0px;
-            background-color: #EEE;
-            border-collapse:collapse;
-         }
-         thead  {
-            font-weight: bold;
-            text-decoration: underline;
-         }
-         th  {
-            border:1px solid #000;
-            padding: 4px;
-         }
-         td  {
-            text-align: center;
-            vertical-align: middle;
-            padding: 4px;
-            border:1px solid #000;
-         }
-         .td__color_color  {
-            text-align: right;
-         }
-         .td__color_name  {
-            text-align: left;
-         }
-         .liked  {
-            text-align: center;
-            background-color: #CD0;
-         }
-         .unliked  {
-            text-align: center;
-            background-color: white;
-         }
-      </style>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
    </head>
 <body>
    <div class="search_section">
@@ -60,7 +20,6 @@
          <input id="id_pic_submit_button" type="submit" value="Search for color"/>
          <p>(Requires {{ MIN_SEARCH_CHARS|apnumber }} or more characters)</p>
       </form>
- 
       {% if  search_text|length >= MIN_SEARCH_CHARS %}
          <p><b>Searching for &quot;<code>{{ search_text }}</code>&quot;:</b>
          {% if  color_search_results.count > 0 %}
@@ -75,6 +34,7 @@
          {% endif %}
       {% endif %}
    </div>
+   
    <div class="content_section">
       <h1>Color Likenatorizer</h1>
  
@@ -91,15 +51,32 @@
                   <td style="background-color: {{ color.name }};" class="td__color_color"
                      >{{ color.name }}</td>
                   <td class="td__color_name">{{ color.name }}</td>
-                  <td class="{% if not color.is_favorited %}un{% endif %}liked"
-                     ><a href="{% url 'toggle_color_like' color.id %}"
-                     >{% if color.is_favorited %}Yes{% else %}No{% endif %}</a></td>
+                  <td id="toggle_color_like_cell_{{ color.id }}" class="td__toggle_color_like_button" data-color_id="{{ color.id }}">
+                  {% include "ajax/color_like_link_to_html.txt" %}
+                  </td>
                </tr>
             {% endfor %}
          </table>
       {% endif %}
    </div>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script language="javascript">
-      document.getElementById("search_text").focus();
+      /*
+         Before our JavaScript can be imported, the following JavaScript
+         variable (the url to toggle the like) needs to be set from the
+         Django variable. While this could be hard-coded into the
+         JavaScript, this allows it to be centrally located (in
+         color_liker.urls).
+ 
+         Since an id must be provided to the Django url, give it a
+         bogus one, then immediately lop it off (along with the
+         ending '/'). It is re-appended by the JavaScript.
+       */
+      var LIKE_URL_PRE_ID = "{% url 'toggle_color_like' color_id='999999999' %}"
+      LIKE_URL_PRE_ID = LIKE_URL_PRE_ID.substring(0, LIKE_URL_PRE_ID.length - "999999999/".length);
    </script>
+
+    <script type='text/javascript' src="{% static 'js/color_ajax_like.js' %}"></script>
 </body></html>
