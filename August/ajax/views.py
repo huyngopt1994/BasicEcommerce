@@ -73,6 +73,6 @@ def toggle_color_like(request, color_id):
 
 	color.save() # Commit the change of database
 	
-	return render_to_response("ajax/color_like_link_to_html.txt", {"color":color})
+	return render(request,"ajax/color_like_link_to_html.txt", {"color":color})
 
 

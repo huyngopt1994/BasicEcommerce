@@ -24,7 +24,7 @@ var processLike = function()  {
    var color_id = $button_just_clicked_on.data('color_id');
  
    var processServerResponse = function(sersverResponse_data, textStatus_ignored,
-                            jqXHR_ignored)  {
+                                        jqXHR_ignored)  {
       //alert("sf sersverResponse_data='" + sersverResponse_data + "', textStatus_ignored='" + textStatus_ignored + "', jqXHR_ignored='" + jqXHR_ignored + "', color_id='" + color_id + "'");
       $('#toggle_color_like_cell_' + color_id).html(sersverResponse_data);
    }

@@ -74,8 +74,11 @@
          bogus one, then immediately lop it off (along with the
          ending '/'). It is re-appended by the JavaScript.
        */
+
       var LIKE_URL_PRE_ID = "{% url 'toggle_color_like' color_id='999999999' %}"
+      document.write(LIKE_URL_PRE_ID)
       LIKE_URL_PRE_ID = LIKE_URL_PRE_ID.substring(0, LIKE_URL_PRE_ID.length - "999999999/".length);
+      document.write(LIKE_URL_PRE_ID)
    </script>
 
     <script type='text/javascript' src="{% static 'js/color_ajax_like.js' %}"></script>
