@@ -20,6 +20,8 @@ class ColorList (ListView):
 	# template variable to access model in template
 	context_object_name = "colors"
 
+	def get_template_names(self):
+		return ['ajax/huy.html']
 	def dispatch(self, request, *args, **kwargs):
 		self.request = request #So get_context_data can access it.
 		return super(ColorList, self).dispatch(request, *args, **kwargs)

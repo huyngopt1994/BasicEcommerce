@@ -5,9 +5,29 @@
     <title>Tasterb Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script language="javascript">
+      /*
+         Before our JavaScript can be imported, the following JavaScript
+         variable (the url to toggle the like) needs to be set from the
+         Django variable. While this could be hard-coded into the
+         JavaScript, this allows it to be centrally located (in
+         color_liker.urls).
+ 
+         Since an id must be provided to the Django url, give it a
+         bogus one, then immediately lop it off (along with the
+         ending '/'). It is re-appended by the JavaScript.
+       */
+
+      var  PRODUCT_URL_ID = "{% url 'change_product' product_id='999999999' %}"
+      PRODUCT_URL_ID = PRODUCT_URL_ID.substring(0, PRODUCT_URL_ID.length - "999999999/".length);
+</script>
+
+<script type='text/javascript' src="{% static 'js/home.js' %}">
+</script>
   <style>
 
     /* Add a gray background color and some padding to the footer */
@@ -125,6 +145,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+
+
 </div>
 
 <div class=" overview container-fluid ">
@@ -139,18 +161,20 @@
   
     <div class="container-fluid  wrapper">
       <ul id ="second-menu">
-          <li class="change" product_id=1 >Best Seller</li>
-          <li class="change" product_id=1 >Smothies</li>
-          <li class="change" product_id=2 >Snack</li>
-          <li class="change" product_id=3 >Dessert</li>
-          <li class="change" product_id=4 >Ice Cream</li>
+          <li class="change" data-product_id=1 >Best Seller</li>
+          <li class="change" data-product_id=1 >Smothies</li>
+          <li class="change" data-product_id=2 >Snack</li>
+          <li class="change" data-product_id=3 >Dessert</li>
+          <li class="change" data-product_id=4 >Ice Cream</li>
       </ul>
     </div> 
     <p id="number"> changed content </p>
   </div>
 
-  <div class"containter-fuild" id ="content_product">
-  {% include "render_product.txt" %}
+  <div class"containter-fuild" >
+    <div id ="content_product" >
+    {% include 'render_product.html' %}
+    </div>
   </div>
 </div>
 
@@ -167,29 +191,6 @@
   </div> 
 </div>
 
-<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js">
-    </script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script language="javascript">
-      /*
-         Before our JavaScript can be imported, the following JavaScript
-         variable (the url to toggle the like) needs to be set from the
-         Django variable. While this could be hard-coded into the
-         JavaScript, this allows it to be centrally located (in
-         color_liker.urls).
- 
-         Since an id must be provided to the Django url, give it a
-         bogus one, then immediately lop it off (along with the
-         ending '/'). It is re-appended by the JavaScript.
-       */
-
-      var  PRODUCT_URL_ID = "{% url 'change_product' product_id='999999999' %}"
-      PRODUCT_URL_ID = PRODUCT_URL_ID.substring(0, PRODUCT_URL_ID.length - "999999999/".length);
-</script>
-
-<script type='text/javascript' src="{% static 'js/home.js' %}">
-</script>
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>

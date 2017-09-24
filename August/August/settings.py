@@ -130,6 +130,7 @@ STATIC_URL = '/static/'
 if DEBUG:
     MEDIA_URL = '/media/'
     # /static/media
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static-only")
     MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
     # staticfiles dir to look up the css , javascript
     #/static/static/
@@ -159,7 +160,4 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 STATICFILES_FINDERS = (
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'dajaxice.finders.DajaxiceFinder',
 )
-
-DAJAXICE_MEDIA_PREFIX = 'dajaxice'
