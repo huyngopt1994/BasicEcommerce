@@ -31,4 +31,15 @@ $(document).ready(function()  {
     });
 
     $(".change").click(process_get_product);
+
+$(document).on('mouseenter', ".block-image",function() { 
+        $(this).find(".middle").css({"opacity" :1});
+        $(this).find(".my-img").css({"opacity" :0.3});} );
+
+$(document).on('mouseleave',".block-image", function() { 
+        $(this).find(".middle").css({"opacity" :0});
+        $(this).find(".my-img").css({"opacity" :1});
+      });
 });
+
+
